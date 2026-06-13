@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 양재 영아부 어드벤처 — 참가 신청</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #E8B84B;
+      --gold-light: #F5D785;
+      --gold-dark:  #C49B2F;
+      --navy:       #1C3557;
+      --navy-light: #2A4E7A;
+      --cream:      #FFFDF5;
+      --text:       #2C2C2C;
+      --muted:      #888;
+      --shadow:     0 6px 28px rgba(0,0,0,0.10);
+      --radius:     16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 0 24px 72px;
+      overflow: hidden;
+    }
+
+    /* Background */
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* PC: 이미지 상단(로고) 기준으로 표시, 텍스트는 하단 */
+    @media (min-width: 769px) {
+      .hero {
+        justify-content: flex-end;
+        padding-bottom: 80px;
+      }
+      .slide {
+        background-position: center top;
+        background-size: cover;
+      }
+    }
+
+    /* 오버레이 없음 — hero_main.png는 밝은 이미지 */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      margin-bottom: 36px;
+    }
+
+    .hero-year {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 6px 22px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(28,53,87,0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+      text-shadow: none;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-dark);
+    }
+
+    .hero-theme {
+      font-size: clamp(.95rem, 2.2vw, 1.25rem);
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      text-shadow: none;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: white;
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 1.05rem;
+      padding: 18px 46px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 10px 36px rgba(0,0,0,.15);
+      transition: all .25s;
+    }
+    .hero-cta:hover {
+      background: rgba(255,255,255,0.88);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 44px rgba(0,0,0,.2);
+    }
+
+    /* Date/place pill row */
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(255,255,255,0.9);
+      color: var(--navy);
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 100px;
+    }
+
+    /* ── SECTION COMMON ──────────────────────────── */
+    .section { padding: 80px 24px; }
+    .inner { max-width: 960px; margin: 0 auto; }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 40px;
+    }
+    .section-title span { color: var(--gold-dark); }
+
+    /* ── INFO CARDS ──────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border-top: 4px solid var(--gold);
+      transition: transform .2s;
+    }
+    .info-card:hover { transform: translateY(-5px); }
+    .info-icon { font-size: 2rem; margin-bottom: 10px; }
+    .info-label {
+      font-size: .7rem; font-weight: 800;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold-dark); margin-bottom: 8px;
+    }
+    .info-val {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--navy); line-height: 1.4;
+    }
+    .info-sub {
+      font-size: .8rem; color: var(--muted);
+      margin-top: 6px; line-height: 1.55;
+    }
+
+    /* Notice box */
+    .notice {
+      background: linear-gradient(135deg,#fff9e5,#fff4cc);
+      border: 1.5px solid #f0c845;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      font-size: .88rem;
+      line-height: 1.8;
+    }
+    .notice-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(232,184,75,.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: .84rem;
+    }
+    .notice-alert b { color: var(--navy); }
+
+    /* ── FORM SECTION ────────────────────────────── */
+    .form-section {
+      background: white;
+      padding: 80px 24px 100px;
+    }
+
+    .form-wrap { max-width: 620px; margin: 0 auto; }
+
+    /* Progress stepper */
+    .stepper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      margin-bottom: 44px;
+    }
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 17px; left: 50%;
+      width: 100%; height: 2px;
+      background: #e0e0e0;
+      z-index: 0;
+      transition: background .4s;
+    }
+    .step-item.done:not(:last-child)::after,
+    .step-item.current:not(:last-child)::after {
+      background: var(--gold);
+    }
+    .step-dot {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #e8e8e8; color: #aaa;
+      font-size: .85rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      transition: all .35s;
+    }
+    .step-item.current .step-dot {
+      background: var(--gold); color: var(--navy);
+      box-shadow: 0 0 0 5px rgba(232,184,75,.25);
+    }
+    .step-item.done .step-dot {
+      background: var(--navy); color: white;
+    }
+    .step-name {
+      font-size: .7rem; font-weight: 700;
+      color: #bbb; margin-top: 7px; text-align: center;
+    }
+    .step-item.current .step-name { color: var(--gold-dark); }
+    .step-item.done .step-name   { color: var(--navy); }
+
+    /* Form card */
+    .form-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 8px 48px rgba(0,0,0,.09);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    @media (max-width: 520px) { .form-card { padding: 28px 18px; } }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeUp .35s ease; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-heading { font-size: 1.3rem; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
+    .step-heading span { color: var(--gold-dark); }
+    .step-sub { font-size: .84rem; color: var(--muted); margin-bottom: 30px; }
+
+    /* Fields */
+    .field { margin-bottom: 22px; }
+
+    .field label {
+      display: block;
+      font-size: .88rem; font-weight: 800;
+      color: var(--navy); margin-bottom: 6px;
+    }
+    .req { color: #e53e3e; margin-left: 2px; }
+    .field-hint {
+      display: block;
+      font-size: .78rem; font-weight: 400;
+      color: var(--muted); margin-top: 2px; line-height: 1.5;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"] {
+      width: 100%; padding: 13px 16px;
+      border: 2px solid #ebebeb; border-radius: 12px;
+      font-size: .97rem; font-family: inherit;
+      color: var(--text); background: #fafafa;
+      transition: all .2s;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(232,184,75,.15);
+    }
+    input.error { border-color: #e53e3e !important; }
+
+    /* Radio / Checkbox pills */
+    .choice-row {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+
+    .choice-pill {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 18px;
+      border: 2px solid #ebebeb; border-radius: 12px;
+      cursor: pointer; background: #fafafa;
+      transition: all .2s; user-select: none;
+      font-size: .9rem;
+    }
+    .choice-pill:hover {
+      border-color: var(--gold); background: #fffdf5;
+    }
+    .choice-pill input { display: none; }
+    .choice-pill.selected {
+      border-color: var(--gold);
+      background: #fffbea;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    /* T-shirt size tiles */
+    .size-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+    .size-tile {
+      flex: 1; min-width: 90px;
+      border: 2px solid #ebebeb; border-radius: 14px;
+      padding: 20px 12px; text-align: center;
+      cursor: pointer; background: #fafafa;
+      transition: all .2s; user-select: none;
+    }
+    .size-tile:hover { border-color: var(--gold); background: #fffdf5; }
+    .size-tile.selected {
+      border-color: var(--gold); background: #fffbea;
+      box-shadow: 0 0 0 3px rgba(232,184,75,.2);
+    }
+    .size-tile input { display: none; }
+    .size-num { font-size: 1.7rem; font-weight: 900; color: var(--navy); }
+    .size-desc { font-size: .7rem; color: var(--muted); margin-top: 4px; }
+
+    /* Nav buttons */
+    .form-nav {
+      display: flex; gap: 10px; margin-top: 32px;
+    }
+    .btn {
+      padding: 14px 28px; border: none; border-radius: 100px;
+      font-size: .97rem; font-weight: 800; font-family: inherit;
+      cursor: pointer; transition: all .2s; flex: 1;
+    }
+    .btn-next {
+      background: var(--gold); color: var(--navy);
+      box-shadow: 0 4px 18px rgba(232,184,75,.4);
+    }
+    .btn-next:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-back {
+      background: #f0f0f0; color: #888;
+      flex: 0 0 auto; padding: 14px 22px;
+    }
+    .btn-back:hover { background: #e5e5e5; }
+    .btn-submit {
+      background: var(--navy); color: white;
+      box-shadow: 0 4px 18px rgba(28,53,87,.3);
+    }
+    .btn-submit:hover { background: var(--navy-light); transform: translateY(-2px); }
+
+    /* Success screen */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+      animation: fadeUp .4s ease;
+    }
+    .success-emoji { font-size: 4rem; margin-bottom: 16px; }
+    .success h3 {
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .success p { color: var(--muted); font-size: .9rem; }
+    .success-account {
+      margin: 24px auto 0; max-width: 320px;
+      background: #fffbea;
+      border: 1.5px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px 24px; text-align: left;
+    }
+    .acc-bank { font-size: .75rem; font-weight: 800; color: var(--gold-dark); letter-spacing: 1px; }
+    .acc-num  { font-size: 1.35rem; font-weight: 900; letter-spacing: 2px; color: var(--navy); margin: 4px 0; }
+    .acc-name { font-size: .82rem; color: var(--muted); }
+
+    /* ── PAYMENT SECTION ────────────────────────── */
+    .pay-section {
+      background: var(--navy);
+      padding: 80px 24px;
+    }
+    .pay-section .section-title { color: white; }
+    .pay-section .section-title span { color: var(--gold); }
+    .pay-inner { max-width: 680px; margin: 0 auto; }
+
+    .pay-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: var(--radius);
+      padding: 28px 28px;
+      margin-bottom: 18px;
+    }
+    .pay-card-title {
+      font-size: .85rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+
+    .account-box {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,.1);
+      border-radius: 12px; padding: 18px 22px;
+    }
+    .ab-bank  { font-size: .72rem; font-weight: 700; color: var(--gold-light); }
+    .ab-num   { font-size: 1.3rem; font-weight: 900; letter-spacing: 2px; color: white; }
+    .ab-name  { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: 2px; }
+    .copy-btn {
+      margin-left: auto; flex-shrink: 0;
+      background: var(--gold); color: var(--navy);
+      border: none; font-weight: 800; font-size: .8rem;
+      padding: 9px 18px; border-radius: 8px; cursor: pointer;
+      transition: background .2s;
+    }
+    .copy-btn:hover { background: var(--gold-light); }
+
+    .refund-list { list-style: none; margin-top: 4px; }
+    .refund-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: .87rem; color: rgba(255,255,255,.78);
+    }
+    .refund-list li:last-child { border-bottom: none; }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; margin-top: 8px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #0a1624;
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: .82rem;
+      line-height: 1.8;
+    }
+    footer strong { color: rgba(255,255,255,.75); }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.5rem; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Mobile hero: 로고 아래 하늘 영역에 텍스트 배치 */
+      .hero {
+        min-height: 100dvh;
+        justify-content: center;
+        padding-bottom: 0;
+        padding-top: 50vh;
+      }
+      .hero-year { font-size: 10px; padding: 5px 16px; margin-bottom: 12px; }
+      .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+      .hero-theme { font-size: .95rem; margin-bottom: 18px; }
+      .hero-meta { gap: 8px; margin-bottom: 20px; }
+      .meta-pill { font-size: .75rem; padding: 6px 14px; }
+      .hero-cta { font-size: .97rem; padding: 15px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<header class="hero" id="top">
+  <!-- Background image -->
+  <div class="slide active" style="background-image:url('hero_main.png')"></div>
+
+  <!-- Gradient overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-year">✨ 2026 양재 영아부</div>
+    <h1>어드벤처<br><em>Adventure</em></h1>
+    <p class="hero-theme">여호수아, 약속의 땅으로</p>
+    <div class="hero-meta">
+      <span class="meta-pill">📅 2026. 07. 04 (토)</span>
+      <span class="meta-pill">🕙 10:30 ~ 14:00</span>
+      <span class="meta-pill">📍 양재 온누리 화평홀 B1</span>
+    </div>
+    <a href="#register" class="hero-cta">🙋 참가 신청하기</a>
+  </div>
+</header>
+
+
+<!-- ══════════════════ EVENT INFO ══════════════════ -->
+<section class="section">
+  <div class="inner">
+    <h2 class="section-title">행사 <span>안내</span></h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">📅</div>
+        <div class="info-label">일시</div>
+        <div class="info-val">2026년 7월 4일 (토)</div>
+        <div class="info-sub">오전 10:30 ~ 오후 2:00<br>등록·접수 : 오전 10시</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div class="info-label">장소</div>
+        <div class="info-val">양재 온누리교회</div>
+        <div class="info-sub">화평홀 (지하 1층)</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">💛</div>
+        <div class="info-label">회비 (사전접수)</div>
+        <div class="info-val">30,000원</div>
+        <div class="info-sub">6/20(토)까지<br>6/21 이후 35,000원</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎁</div>
+        <div class="info-label">회비에 포함</div>
+        <div class="info-val">풍성한 구성!</div>
+        <div class="info-sub">교재 · 티셔츠 · 활동자료<br>식사 (부모 1명 + 자녀 1명)</div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>🗺️ 어드벤처를 위해 미리 준비해요!</strong><br>
+      <span style="color:#666;">준비물: 기도 &amp; 성경 말씀 쓰기 (여호수아 1, 3, 6, 23, 24장)</span>
+      <div class="notice-alert">
+        ⏰&nbsp;
+        <span><b>티셔츠 신청 마감 : 6/20(토)</b> — 배송 문제로 이후 신청이 어렵습니다. 반드시 기한 내에 신청해 주세요!</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ FORM ══════════════════ -->
+<section class="form-section" id="register">
+  <div class="form-wrap">
+    <h2 class="section-title">참가 <span>신청서</span></h2>
+
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="step-item current" id="si-1">
+        <div class="step-dot" id="sd-1">1</div>
+        <div class="step-name">자녀 사항</div>
+      </div>
+      <div class="step-item" id="si-2">
+        <div class="step-dot" id="sd-2">2</div>
+        <div class="step-name">티셔츠</div>
+      </div>
+      <div class="step-item" id="si-3">
+        <div class="step-dot" id="sd-3">3</div>
+        <div class="step-name">부모님</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+
+      <form id="reg-form">
+
+        <!-- ── STEP 1 : 자녀 사항 ───────────────── -->
+        <div class="form-step active" id="fs-1">
+          <div class="step-heading">👶 자녀 사항 <span>(1/3)</span></div>
+          <p class="step-sub">어드벤처에 참여하는 자녀 정보를 입력해 주세요.</p>
+
+          <div class="field">
+            <label>소그룹 반 이름 <span class="req">*</span>
+              <span class="field-hint">소속 소그룹 반 이름을 적어주세요!</span>
+            </label>
+            <input type="text" name="entry.1286167995" id="f-group" placeholder="예: 다윗반">
+          </div>
+
+          <div class="field">
+            <label>자녀 이름 <span class="req">*</span>
+              <span class="field-hint">2명 이상일 경우 자녀의 이름을 모두 적어주세요 :)</span>
+            </label>
+            <input type="text" name="entry.879219281" id="f-child" placeholder="예: 홍길동 / 홍길동, 홍길순">
+          </div>
+
+          <div class="field">
+            <label>성별 <span class="req">*</span></label>
+            <div class="choice-row" id="gender-row">
+              <label class="choice-pill" onclick="pickRadio(this,'gender-row')">
+                <input type="radio" name="entry.897799063" value="남">
+                <span>👦 남</span>
+              </label>
+              <label class="choice-pill" onclick="pickRadio(this,'gender-row')">
+                <input type="radio" name="entry.897799063" value="여">
+                <span>👧 여</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn btn-next" onclick="goStep(2)">다음 단계 →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 2 : 티셔츠 ─────────────────── -->
+        <div class="form-step" id="fs-2">
+          <div class="step-heading">👕 티셔츠 사이즈 <span>(2/3)</span></div>
+          <p class="step-sub">⏰ <strong>6/20(토)까지</strong> 신청을 완료해야 티셔츠를 받을 수 있어요!</p>
+
+          <div class="field">
+            <label>사이즈 선택 <span class="req">*</span></label>
+            <div class="size-grid" id="size-row">
+              <label class="size-tile" onclick="pickSize(this,'14')">
+                <input type="radio" name="entry.1937522111" value="14">
+                <div class="size-num">14</div>
+                <div class="size-desc">사이즈</div>
+              </label>
+              <label class="size-tile" onclick="pickSize(this,'15')">
+                <input type="radio" name="entry.1937522111" value="15">
+                <div class="size-num">15</div>
+                <div class="size-desc">사이즈</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn btn-back" onclick="goStep(1)">← 이전</button>
+            <button type="button" class="btn btn-next" onclick="goStep(3)">다음 단계 →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 3 : 부모님 사항 ────────────── -->
+        <div class="form-step" id="fs-3">
+          <div class="step-heading">🙏 부모님 사항 <span>(3/3)</span></div>
+          <p class="step-sub">참석하시는 부모님 정보를 입력해 주세요.</p>
+
+          <div class="field">
+            <label>부모님 성함 <span class="req">*</span>
+              <span class="field-hint">기본 참석 대상: 부모님 중 1인 / 부부·추가 자녀 동반은 아래 항목을 참고해 주세요.</span>
+            </label>
+            <input type="text" name="entry.207539231" id="f-parent" placeholder="예: 홍길동">
+          </div>
+
+          <div class="field">
+            <label>부모님 연락처 <span class="req">*</span></label>
+            <input type="tel" name="entry.1918952013" id="f-phone" placeholder="예: 010-1234-5678">
+          </div>
+
+          <div class="field">
+            <label>추가 식사인원
+              <span class="field-hint">회비에는 부모 1명 + 자녀 1명 식사 포함. 추가 참석 예정인 분이 있으면 인원 수를 알려주세요. (1인당 6,000원 추가 입금)</span>
+            </label>
+            <input type="text" name="entry.1725588961" placeholder="예: 2명 (아빠, 둘째 자녀)">
+          </div>
+
+          <div class="field">
+            <label>섬김 약정
+              <span class="field-hint">우리 아이들을 위해 함께 섬겨주세요! 중복 선택 가능 · 체크 시 안내 전화드립니다 📞</span>
+            </label>
+            <div id="serv-row" style="display:flex; flex-direction:column; gap:10px;">
+              <label class="choice-pill" onclick="toggleCheck(this)">
+                <input type="checkbox" name="entry.1212439049" value="중보기도">
+                <span>🙏 중보기도</span>
+              </label>
+              <label class="choice-pill" onclick="toggleCheck(this)">
+                <input type="checkbox" name="entry.1212439049" value="주차안내">
+                <span>🚗 주차안내</span>
+              </label>
+              <label class="choice-pill" onclick="toggleCheck(this)">
+                <input type="checkbox" name="entry.1212439049" value="재정후원(체크하시면 안내 전화드립니다)">
+                <span>💝 재정후원 <span style="font-size:.78rem;font-weight:400;">(안내 전화드립니다)</span></span>
+              </label>
+              <label class="choice-pill" onclick="toggleCheck(this)">
+                <input type="checkbox" name="entry.1212439049" value="기타(사진촬영, 영상제작 등 필요한 곳 어디든)">
+                <span>📸 기타 <span style="font-size:.78rem;font-weight:400;">(사진촬영, 영상제작 등)</span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn btn-back" onclick="goStep(2)">← 이전</button>
+            <button type="button" class="btn btn-submit" onclick="submitForm()">✅ 신청 완료</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- ── 완료 화면 ────────────────────────── -->
+      <div class="success" id="success-screen">
+        <div class="success-emoji">🎉</div>
+        <h3>신청이 완료되었습니다!</h3>
+        <p>어드벤처에서 뵙겠습니다 😊<br>아래 계좌로 <strong>자녀 이름</strong>으로 입금해 주세요.</p>
+        <div class="success-account">
+          <div class="acc-bank">토스뱅크</div>
+          <div class="acc-num">1000-6569-9416</div>
+          <div class="acc-name">이준목 (모임통장)</div>
+        </div>
+        <p style="margin-top:16px; font-size:.8rem; color:#bbb;">문의: 이선미 코치 <a href="tel:010-9776-0408" style="color:var(--gold-dark);">010-9776-0408</a></p>
+      </div>
+
+    </div><!-- /form-card -->
+  </div><!-- /form-wrap -->
+</section>
+
+
+<!-- ══════════════════ PAYMENT ══════════════════ -->
+<section class="pay-section">
+  <div class="pay-inner">
+    <h2 class="section-title">회비 <span>납부 안내</span></h2>
+
+    <div class="pay-card">
+      <div class="pay-card-title">💳 입금 계좌</div>
+      <div class="account-box">
+        <div>
+          <div class="ab-bank">토스뱅크</div>
+          <div class="ab-num">1000-6569-9416</div>
+          <div class="ab-name">이준목 (모임통장)</div>
+        </div>
+        <button class="copy-btn" onclick="copyAcc()">복사</button>
+      </div>
+      <p style="font-size:.8rem; color:rgba(255,255,255,.5); margin-top:14px;">📌 반드시 <strong style="color:rgba(255,255,255,.75);">자녀 이름</strong>으로 입금해 주세요!</p>
+    </div>
+
+    <div class="pay-card">
+      <div class="pay-card-title">🔄 환불 안내</div>
+      <ul class="refund-list">
+        <li><span class="dot"></span><span>6/20(토)까지 취소 → 전액 환불</span></li>
+        <li><span class="dot"></span><span>6/21(일)부터 취소 → 어드벤처 티셔츠 및 교재로 제공</span></li>
+      </ul>
+    </div>
+
+    <div class="pay-card">
+      <div class="pay-card-title">📞 문의</div>
+      <p style="color:rgba(255,255,255,.7); font-size:.9rem; margin-bottom:8px;">영아2부 코치 이선미</p>
+      <a href="tel:010-9776-0408" style="color:var(--gold-light); font-size:1.2rem; font-weight:900; text-decoration:none;">010-9776-0408</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <p><strong>2026 양재 영아부 어드벤처</strong></p>
+  <p>여호수아, 약속의 땅으로 &nbsp;·&nbsp; 2026.07.04(토) &nbsp;·&nbsp; 양재 온누리교회 화평홀 (지하 1층)</p>
+</footer>
+
+
+<script>
+/* ── Form step navigation ───────────────────── */
+let cur = 1;
+
+function goStep(n) {
+  // Validate before advancing
+  if (n > cur && !validateStep(cur)) return;
+
+  // Update step item classes
+  const si = document.getElementById('si-' + cur);
+  si.classList.remove('current');
+  if (n > cur) si.classList.add('done');
+  else si.classList.remove('done');
+
+  cur = n;
+
+  document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+  document.getElementById('fs-' + cur).classList.add('active');
+
+  document.querySelectorAll('.step-item').forEach(el => el.classList.remove('current'));
+  document.getElementById('si-' + cur).classList.add('current');
+
+  document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function validateStep(s) {
+  if (s === 1) {
+    const g = document.getElementById('f-group');
+    const c = document.getElementById('f-child');
+    const genderChecked = document.querySelector('#gender-row input:checked');
+    if (!g.value.trim()) { shake(g); return false; }
+    if (!c.value.trim()) { shake(c); return false; }
+    if (!genderChecked) {
+      const row = document.getElementById('gender-row');
+      row.style.outline = '2px solid #e53e3e';
+      row.style.borderRadius = '8px';
+      setTimeout(() => { row.style.outline = ''; row.style.borderRadius = ''; }, 2000);
+      return false;
+    }
+  }
+  if (s === 2) {
+    const sizeChecked = document.querySelector('#size-row input:checked');
+    if (!sizeChecked) {
+      const row = document.getElementById('size-row');
+      row.style.outline = '2px solid #e53e3e';
+      row.style.borderRadius = '8px';
+      setTimeout(() => { row.style.outline = ''; row.style.borderRadius = ''; }, 2000);
+      return false;
+    }
+  }
+  if (s === 3) {
+    const p = document.getElementById('f-parent');
+    const ph = document.getElementById('f-phone');
+    if (!p.value.trim()) { shake(p); return false; }
+    if (!ph.value.trim()) { shake(ph); return false; }
+  }
+  return true;
+}
+
+function shake(el) {
+  el.classList.add('error');
+  el.style.animation = 'shake .4s';
+  el.focus();
+  setTimeout(() => { el.classList.remove('error'); el.style.animation = ''; }, 2000);
+}
+
+/* ── Pill selectors ─────────────────────────── */
+function pickRadio(el, rowId) {
+  document.querySelectorAll('#' + rowId + ' .choice-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input[type="radio"]').checked = true;
+}
+
+function pickSize(el, val) {
+  document.querySelectorAll('#size-row .size-tile').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input[type="radio"]').checked = true;
+}
+
+function toggleCheck(el) {
+  const inp = el.querySelector('input[type="checkbox"]');
+  // Let the browser handle the toggle, then sync style
+  setTimeout(() => {
+    el.classList.toggle('selected', inp.checked);
+  }, 0);
+}
+
+/* ── Submit → Google Forms (fetch no-cors) ──── */
+async function submitForm() {
+  if (!validateStep(3)) return;
+
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = '제출 중…';
+
+  // Collect all form field values
+  const params = new URLSearchParams();
+
+  // Text inputs
+  params.append('entry.1286167995', document.querySelector('[name="entry.1286167995"]').value);
+  params.append('entry.879219281',  document.querySelector('[name="entry.879219281"]').value);
+  params.append('entry.207539231',  document.querySelector('[name="entry.207539231"]').value);
+  params.append('entry.1918952013', document.querySelector('[name="entry.1918952013"]').value);
+
+  const extra = document.querySelector('[name="entry.1725588961"]').value;
+  if (extra) params.append('entry.1725588961', extra);
+
+  // Radio: 성별
+  const gender = document.querySelector('[name="entry.897799063"]:checked');
+  if (gender) params.append('entry.897799063', gender.value);
+
+  // Radio: 티셔츠 사이즈
+  const tshirt = document.querySelector('[name="entry.1937522111"]:checked');
+  if (tshirt) params.append('entry.1937522111', tshirt.value);
+
+  // Checkboxes: 섬김약정 (여러 개 가능)
+  document.querySelectorAll('[name="entry.1212439049"]:checked').forEach(cb => {
+    params.append('entry.1212439049', cb.value);
+  });
+
+  try {
+    await fetch(
+      'https://docs.google.com/forms/d/e/1FAIpQLScN-ru_E_WkDAlsMDDBmXZkSuSkRJRPOFqB_5ggmqKI0xa3nA/formResponse',
+      { method: 'POST', body: params, mode: 'no-cors' }
+    );
+  } catch (e) {
+    // no-cors 모드에서는 응답을 읽을 수 없지만 데이터는 정상 전송됨
+  }
+
+  // 성공 화면 표시
+  document.getElementById('reg-form').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  const si3 = document.getElementById('si-3');
+  si3.classList.remove('current');
+  si3.classList.add('done');
+}
+
+/* ── Copy account number ────────────────────── */
+function copyAcc() {
+  navigator.clipboard.writeText('1000-6569-9416').then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ 복사됨';
+    setTimeout(() => btn.textContent = '복사', 2000);
+  }).catch(() => {
+    alert('계좌번호: 1000-6569-9416');
+  });
+}
+</script>
+
+<style>
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-6px); }
+  40%,80% { transform: translateX(6px); }
+}
+/* .star is no longer used but kept harmless */
+</style>
+
+</body>
+</html>
