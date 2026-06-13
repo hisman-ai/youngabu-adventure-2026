@@ -878,6 +878,11 @@ async function submitForm() {
   // Collect all form field values
   const params = new URLSearchParams();
 
+  // Google Forms 다중 섹션 필수 hidden 파라미터
+  params.append('fvv', '1');
+  params.append('pageHistory', '0,1,2,3,4');
+  params.append('fbzx', String(Math.floor(Math.random() * 9e18)));
+
   // Text inputs
   params.append('entry.1903346627', document.querySelector('[name="entry.1903346627"]').value);
   params.append('entry.662071227',  document.querySelector('[name="entry.662071227"]').value);
